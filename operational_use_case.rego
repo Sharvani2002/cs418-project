@@ -1,6 +1,9 @@
 ## Available at: https://play.openpolicyagent.org/p/dvdbF3wnue
 # https://play.openpolicyagent.org/p/ENsW9woy4U
 
+import future.keywords.in
+
+
 # Users
 U := ["Alex", "Bob", "Susan", "James", "Julia"]
 # Roles
@@ -74,24 +77,54 @@ RPDRA = {
     {"RP": ["guest":["Any_Time"]], "DR": ["Entertainment_Devices"]}
 }
 
+
 # User "Alex" wants to perform "on" action/operation the "oven" object/device. 
 # We need to check if it is allowed or not
 
 allow{
+    # if input.user is in the user's list
+    input.user in U
+    # if input.object is a valid device
+    input.object in D
+    # if input.action is a valid operation
+    input.action in OP
+    # if input.context is a valid environmental condition
+    input.context in EC
+
+    # list of valid Environmental roles
+    er_list := { EA_item.ER |
+    some EA_item in EA
+    input.context in EA_item.EC
+    }
+
     # lookup the list of user_roles for the user
     user_roles := UA[input.user]
-    # for each user_roles in that list
+    # for each user_role in that list
     ur := user_roles[_]
     # lookup the list of Role Pairs for the role
     rp := RP[ur]
     # lookup the device roles for role pair rp
-    rpdra_list := RPDRA["RP"] 	##  ??
-
+    rpdra_list := {
+        rpdra_item | 
+        some rpdra_item in RPDRA
+        rpdra_item.RP == rp
+        # check if the er is present in er_list
+        key, value in rpdra_item.RP
+        value in er_list
+    }
+    # Device roles
+    device_roles := rpdra_list["DR"]
+    # for each device_role in that list
+    dr := device_roles[_]
     # look up the permissions associated with the device role
-	##  ??
+    allowed_permissions := pdra_item if {
+        some pdra_item in PDRA
+        pdra_item.DR == dr
+        
+    }
     
     # for each permission
-    p := P[_]
+    p := allowed_permissions[_]
     # check if the permission granted to the user matches the user's request
     p == {"action": input.action, "object": input.object}
 }
