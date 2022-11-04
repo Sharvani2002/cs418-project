@@ -1,8 +1,9 @@
 ## Available at: https://play.openpolicyagent.org/p/dvdbF3wnue
 # https://play.openpolicyagent.org/p/ENsW9woy4U
-
+package egrbac
 import future.keywords.in
 
+default allow := false
 
 # Users
 U := ["Alex", "Bob", "Susan", "James", "Julia"]
@@ -69,14 +70,13 @@ RP = {
 
 #Role pair to Device Role
 RPDRA = {
-    {"RP": ["parent": ["Any_Time"]], "DR": ["Adult_Controlled"]},
-    {"RP": ["parent": ["Any_Time"]], "DR": ["Owner_Controlled"]},
-    {"RP": ["parent": ["Any_Time"]], "DR": ["Entertainment_Devices"]},
-    {"RP": ["kid":["Entertainment_Time"]], "DR": ["Kids_Friendly_Content"]},
-    {"RP": ["babysitter":["Any_Time"]], "DR": ["Adult_Controlled"]},
-    {"RP": ["guest":["Any_Time"]], "DR": ["Entertainment_Devices"]}
+    {"RP": {"parent": ["Any_Time"]}, "DR": ["Adult_Controlled"]},
+    {"RP": {"parent": ["Any_Time"]}, "DR": ["Owner_Controlled"]},
+    {"RP": {"parent": ["Any_Time"]}, "DR": ["Entertainment_Devices"]},
+    {"RP": {"kid":["Entertainment_Time"]}, "DR": ["Kids_Friendly_Content"]},
+    {"RP": {"babysitter":["Any_Time"]}, "DR": ["Adult_Controlled"]},
+    {"RP": {"guest":["Any_Time"]}, "DR": ["Entertainment_Devices"]}
 }
-
 
 # User "Alex" wants to perform "on" action/operation the "oven" object/device. 
 # We need to check if it is allowed or not
@@ -102,29 +102,38 @@ allow{
     # for each user_role in that list
     ur := user_roles[_]
     # lookup the list of Role Pairs for the role
-    rp := RP[ur]
+#     rp := {
+#     RP_item | 
+#     RP_item RP[ur]
+#     }
+	
     # lookup the device roles for role pair rp
     rpdra_list := {
         rpdra_item | 
         some rpdra_item in RPDRA
-        rpdra_item.RP == rp
-        # check if the er is present in er_list
-        key, value in rpdra_item.RP
+        some key,value in rpdra_item
+        # rpdra_item.RP.first in ur
+        key in ur
+        # rpdra_item.RP.second == rp
         value in er_list
+        # check if the er is present in er_list
+		rpdra_item[_] == er_list[_]
     }
     # Device roles
-    device_roles := rpdra_list["DR"]
+    device_roles := rpdra_list[_].DR
     # for each device_role in that list
-    dr := device_roles[_]
-    # look up the permissions associated with the device role
-    allowed_permissions := pdra_item if {
+#     dr := device_roles[_]
+    # look up the permissions associated with the device role    
+    allowed_permissions := { pdra_item |
         some pdra_item in PDRA
-        pdra_item.DR == dr
-        
+        pdra_item.DR == device_roles
     }
     
     # for each permission
-    p := allowed_permissions[_]
+    p := allowed_permissions[_].P[_]
     # check if the permission granted to the user matches the user's request
-    p == {"action": input.action, "object": input.object}
+#     some p_item in p
+    input.action in p.OP
+    input.object in p.D
+#     p == {"action": input.action, "object": input.object}
 }
