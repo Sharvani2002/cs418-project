@@ -8,6 +8,15 @@ chmod 755 ./opa
 ```
 - Clone the repo, `cs418-project`
 
+- Create a virtual environment and run the below command to reinstall the packages in the virtual environment:
+```
+pip install -r requirements.txt
+```
+- Go to the project, `cs418-project` and run the OPA server with the required rego files
+```
+../opa run -s -w pdp-source/
+```
+
 #### No setup case
 Run the code on the <a href="https://play.openpolicyagent.org/">Rego playground</a> for no setup
 

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}
+Operation
+{% endblock %}
+{% block content %}
+<h1>Operation Form</h1>
+
+<form action="{{ url_for("operation")}}" method="POST">
+    <label for="username">User name:</label>
+    <input type="text" id="username" name="user" placeholder="username">
+    <label for="action">Action or operation you want to perform:</label>
+    <input type="text" id="action" name="action" placeholder="action">
+    <label for="device">Object or device:</label>
+    <input type="text" id="device" name="object" placeholder="device">
+    <label for="context">Environmental context or condition:</label>
+    <input type="text" id="context" name="context" placeholder="context">
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
