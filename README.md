@@ -14,11 +14,11 @@ Run the code on the <a href="https://play.openpolicyagent.org/">Rego playground<
 #### Debugging
 for debugging and getting the value of op_allow
 ```
-./opa eval -f raw -d cs418-project/operational_model_debug.rego -i cs418-project/op_model_input.json 'data.egrbac.op_allow'
+./opa eval -f raw -d cs418-project/pdp-source/operational_model_debug.rego -i cs418-project/pdp-source/op_model_input.json 'data.egrbac.op_allow'
 ```
 
 #### Run tests
 To exercise the policy, run the opa test command in the directory containing the files.
 ```
-./opa test . -v
+./opa test pdp-source -v
 ```
