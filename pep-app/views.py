@@ -51,6 +51,13 @@ def validate_operation_input_function(*arg, **kwargs):
     # }
 
 
+# def checkJson(s):
+#     try:
+#         json.decode(s)
+#         return True
+#     except json.JSONDecodeError:
+#         return False
+
 @app.route('/operation/', methods =["POST"])
 def operation_resp():
     if request.method == "POST":
@@ -68,8 +75,15 @@ def operation_resp():
     response = requests.post(app.config["OPA_OP_URL"], json=validate_operation_input_function(user, action, object, context), timeout=200000) 
     app.logger.info("Operation allowed: %s", response)
     # return response
-    if True:
+    json_request = requests.json()
+    print(json_request)
 
+    json_response = response.json()
+    print(json_response)
+    #report error
+    # if not checkJson(json_response):
+    #     return render_template("operation_not_allowed.html")
+    if json_response['result'] == True:
         return render_template("operation_allowed.html")
     else:
         return render_template("operation_not_allowed.html")
