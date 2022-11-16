@@ -4,7 +4,20 @@ default op_allow := false
 
 op_allow{
 
+	# checking if user is an Administrative Role
 	input.user in AUser
+	input.AR in AR
+    
+        
+
+    some key1,value1 in input.RP
+    some key2,value2 in RP
+    key1 == key2
+    value1 == value2
+    
+    some dr in input.DR
+    dr in DR
+   
     
     # finding inclusive task of rp,dr in the Inclusive Roles
     
@@ -69,6 +82,28 @@ RPDRA = {
     {"RP": {"babySitter":["Any_Time"]}, "DR": ["Adult_Controlled"]},
     {"RP": {"guest":["Any_Time"]}, "DR": ["Entertainment_Devices"]}
 }
+
+P1 := {"D":["TV" , "DVD", "PlayStation"], "OP": ["On", "Off", "PG", "R" ]}
+P2 := {"D":["TV", "DVD", "PlayStation"], "OP": ["On", "Off", "PG"] }
+P3 := {"D":["Oven"], "OP": ["On_Oven", "Off_Oven"] }
+P4 := {"D":["FrontDoor"], "OP": ["Lock", "Unlock"] }
+P5 := {"D":["SurveillanceCamera"], "OP": ["StartRecording", "StopRecording" ]}
+P6 := {"D":["BurglarAlarm"], "OP": ["Activate", "Deactivate" ]}
+P7 := {"D":["GarageDoor"], "OP": ["OpenGarageDoor" , "CloseGarageDoor" ]}
+P8 := {"D":["Thermostat"], "OP": ["On_Thermostat", "Off_Thermostat", "Schedule_Thermostat"]}
+P9 := {"D":["Thermostat"], "OP": ["On_Thermostat", "Off_Thermostat"]}
+P10 := {"D":["OutDoorCamera"], "OP": ["OnOutDoorCamera", "OffOutDoorCamera"]}
+
+P := [P1, P2, P3, P4, P5, P6, P7, P8, P9, P10]
+
+PDRA = {
+    {"P": [P1], "DR": ["Entertainment_Devices"] },
+    {"P": [P2], "DR": ["Kids_Friendly_Content"] },
+    {"P": [P3, P4, P9], "DR": ["Adult_Controlled"]},
+    {"P": [P5, P6, P7, P8], "DR": ["Owner_Controlled"]}
+}
+
+
 
 # Users
 AUser := ["Bob", "Julia"]
