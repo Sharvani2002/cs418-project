@@ -33,22 +33,22 @@ def validate_operation_input_function(*arg, **kwargs):
     #     }
     # }
 
-    return {
-        "input":{
-                "user": "Susan",
-                "action": "StartRecording",
-                "object": "SurveillanceCamera",
-                "context":"TRUE"
-        }
-    }
     # return {
-    #     "input": {
-    #         "user": arg[0],
-    #         "action": arg[1],
-    #         "object": arg[2],
-    #         "context": arg[3]
+    #     "input":{
+    #             "user": "Susan",
+    #             "action": "StartRecording",
+    #             "object": "SurveillanceCamera",
+    #             "context":"TRUE"
     #     }
     # }
+    return {
+        "input": {
+            "user": arg[0],
+            "action": arg[1],
+            "object": arg[2],
+            "context": arg[3]
+        }
+    }
 
 
 # def checkJson(s):
@@ -57,6 +57,8 @@ def validate_operation_input_function(*arg, **kwargs):
 #         return True
 #     except json.JSONDecodeError:
 #         return False
+
+
 
 @app.route('/operation/', methods =["POST"])
 def operation_resp():
@@ -74,10 +76,6 @@ def operation_resp():
     #     return render_template("operation_not_allowed.html")
     response = requests.post(app.config["OPA_OP_URL"], json=validate_operation_input_function(user, action, object, context), timeout=200000) 
     app.logger.info("Operation allowed: %s", response)
-    # return response
-    json_request = requests.json()
-    print(json_request)
-
     json_response = response.json()
     print(json_response)
     #report error
