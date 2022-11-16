@@ -1,10 +1,40 @@
 package egrbac
 import future.keywords.in
+import future.keywords.every
+
 default op_allow := false
+default revoke_RPDR := false
+default assign_RPDR := false
+
+revoke_RPDR{
+
+
+	
+    op_allow
+    
+    # revoke RPDRA
+    
+    some rpdra_item in RPDRA
+    rpdra_item.RP == input.RP
+    rpdra_item.DR == input.DR
+}
+
+does_there_exist_rpdra_exact_item_match {
+    some rpdra_item in RPDRA
+    rpdra_item.RP == input.RP
+    rpdra_item.DR == input.DR
+}
+
+assign_RPDR{
+
+	op_allow
+    
+    # assign RPDRA
+    not does_there_exist_rpdra_exact_item_match
+}
+
 
 op_allow{
-
-	# checking if user is an Administrative Role
 	input.user in AUser
     
     # check for valid AR
@@ -49,25 +79,21 @@ op_allow{
     # checking if the Adminstrative Role is same as that of the given input
     input.AR in arata_item.AR
     
-    # revoke RPDRA
-    
-#     not input.assignRPDRA/0
-#     some rpdra_item in RPDRA
-#     rpdra_item.RP == input.RP
-#     rpdra_item.DR == input.DR
-    
- 
-    
     # if it return true:
-    	# it means that the user can add to the access rules in RPDRA of the operational model
-    	# it replicates the assignPDRA 
-        
-        # it means that the user can revoke to the access rules in RPDRA of the operational model
-    	# it replicates the revokePDRA 
+    # it means that the user can add to the access rules in RPDRA of the operational model
+    # it replicates the assignPDRA 
 
-    
-    
+    # it means that the user can revoke to the access rules in RPDRA of the operational model
+    # it replicates the revokePDRA 
 }
+
+
+
+
+
+
+
+
 
 # Users
 U := ["Alex", "Bob", "Susan", "James", "Julia"]
@@ -95,7 +121,7 @@ RPDRA = {
     {"RP": {"parent": ["Any_Time"]}, "DR": ["Owner_Controlled"]},
     {"RP": {"parent": ["Any_Time"]}, "DR": ["Entertainment_Devices"]},
     {"RP": {"kid":["Entertainment_Time"]}, "DR": ["Kids_Friendly_Content"]},
-    {"RP": {"babySitter":["Any_Time"]}, "DR": ["Adult_Controlled"]},
+#     {"RP": {"babySitter":["Any_Time"]}, "DR": ["Adult_Controlled"]},
     {"RP": {"guest":["Any_Time"]}, "DR": ["Entertainment_Devices"]}
 }
 

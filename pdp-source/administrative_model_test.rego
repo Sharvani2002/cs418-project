@@ -1,7 +1,7 @@
 package egrbac
 import future.keywords
 
-test_assign_RPDA_allowed if {
+test_RPDRA_assign_not_allowed_revoke_allowed if {
     "user" : "Bob",
     "AR" : "Entertainment_Manager",
     "RP": {
@@ -13,18 +13,7 @@ test_assign_RPDA_allowed if {
 }
 
 
-test_assign_RPDA_not_allowed  {
-    "user" : "Julia",
-    "AR" : "Home_Owner",
-    "RP": {
-                "kid": [
-                    "Entertainment_Time"
-                ]
-            },
-    "DR" : ["Kids_Friendly_Content"]
-}
-
-test_assign_RPDA_allowed if {
+test_RPDRA_assign_allowed_revoke_not_allowed  {
     "user" : "Julia",
     "AR" : "Home_Owner",
     "RP": {
@@ -33,15 +22,4 @@ test_assign_RPDA_allowed if {
                 ]
             },
     "DR" : ["Adult_Controlled"]
-}
-
-test_assign_RPDA_not_allowed  {
-    "user" : "Bob",
-    "AR" : "Home_Owner",
-    "RP": {
-                "kid": [
-                    "Entertainment_Time"
-                ]
-            },
-    "DR" : ["Entertainment_Devices"]
 }
