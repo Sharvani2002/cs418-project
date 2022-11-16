@@ -6,17 +6,19 @@ op_allow{
 
 	# checking if user is an Administrative Role
 	input.user in AUser
+    
+    # check for valid AR
 	input.AR in AR
     
         
-
+	# check for valid Role Pair (RP)
     some key1,value1 in input.RP
     some key2,value2 in RP
     key1 == key2
     value1 == value2
     
-    some dr in input.DR
-    dr in DR
+    # check for valid DR
+    input.DR[_] in DR
    
     
     # finding inclusive task of rp,dr in the Inclusive Roles
