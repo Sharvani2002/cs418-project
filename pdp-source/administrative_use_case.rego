@@ -10,6 +10,11 @@ op_allow{
     # check for valid AR
 	input.AR in AR
     
+    
+    # check for valid AUA assignment
+    some key, value in AUA
+    key == input.user
+    input.AR in value
         
 	# check for valid Role Pair (RP)
     some key1,value1 in input.RP
@@ -43,6 +48,15 @@ op_allow{
     
     # checking if the Adminstrative Role is same as that of the given input
     input.AR in arata_item.AR
+    
+    # revoke RPDRA
+    
+#     not input.assignRPDRA/0
+#     some rpdra_item in RPDRA
+#     rpdra_item.RP == input.RP
+#     rpdra_item.DR == input.DR
+    
+ 
     
     # if it return true:
     	# it means that the user can add to the access rules in RPDRA of the operational model
@@ -113,10 +127,8 @@ AUser := ["Bob", "Julia"]
 AR := ["Entertainment_Manager", "Home_Owner", "Adult_Manager"]
 # user_roles
 AUA := {
-    "Bob": ["Home_Owner"], 
-    "Julia": ["Home_Owner"], 
-    "Julia": ["Adult_Manager"], 
-    "Bob": ["Entertainment_Manager"]
+    "Bob": ["Home_Owner", "Entertainment_Manager"], 
+    "Julia": ["Home_Owner", "Adult_Manager"], 
 }
 AU := ["Entertainment_Management", "Ownership_Control", "Adult_Management"]
 

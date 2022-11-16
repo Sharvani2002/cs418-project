@@ -37,7 +37,7 @@ test_assign_RPDA_allowed if {
 
 test_assign_RPDA_not_allowed  {
     "user" : "Bob",
-    "AR" : "Adult_Manager",
+    "AR" : "Home_Owner",
     "RP": {
                 "kid": [
                     "Entertainment_Time"
