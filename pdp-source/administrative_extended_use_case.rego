@@ -1,34 +1,29 @@
-package egrbac_admin
+package egrbac_admin_extended
 import future.keywords.in
-
+import future.keywords.every
 
 default op_allow := false
-default revoke_RPDR := false
-default assign_RPDR := false
-default does_there_exist_rpdra_exact_item_match := false
+default revokePDR := false
+default assignPDR := false
+default does_exist_pdra := false
 
-does_there_exist_rpdra_exact_item_match {
-    some rpdra_item in RPDRA
-    rpdra_item.RP == input.RP
-    rpdra_item.DR == input.DR
+does_exist_pdra{
+	some pdra in PDRA
+ 	pdra.P == input.P
+    pdra.DR == input.DR
 }
 
-revoke_RPDR{
-    op_allow
-    
-    # revoke RPDRA
-    
-    does_there_exist_rpdra_exact_item_match
-}
-
-
-
-assign_RPDR{
-
+assignPDR{
 	op_allow
+    not does_exist_pdra
     
-    # assign RPDRA
-    not does_there_exist_rpdra_exact_item_match
+}
+
+revokePDR{
+
+    op_allow
+    does_exist_pdra
+    
 }
 
 
@@ -44,45 +39,34 @@ op_allow{
     key == input.user
     input.AR in value
         
-	# check for valid Role Pair (RP)
-    some key1,value1 in input.RP
-    some key2,value2 in RP
-    key1 == key2
-    value1 == value2
+	# check for valid Permission
+	every p in input.P{
+    some p1 in P
+    p == p1
+    }
+    
+    
     
     # check for valid DR
     input.DR[_] in DR
    
     
-    # finding inclusive task of rp,dr in the Inclusive Roles
-    
-    some tasks in ProhibitedAssignment
-    not input.RP in tasks.RP
-    not input.DR in tasks.DR
-    
-    
+   # get all the valid administrative task    
     at_list := {
         task_item.AT |
     some task_item in InclusiveRoles
-    task_item.RPDR.DR == input.DR
-    task_item.RPDR.RP == input.RP
+    task_item.PDRA.P == input.P
+    task_item.PDRA.DR == input.DR
     }
     
-        
-	# finding out the Administrative role associated with this Adminstrative Task
+
+	# get all the Administrative role associated with the Administrative Task
     some arata_item in ARATA
     some ats in at_list
     ats == arata_item.AT
-    
-    # checking if the Adminstrative Role is same as that of the given input
     input.AR in arata_item.AR
     
-    # if it return true:
-    # it means that the user can add to the access rules in RPDRA of the operational model
-    # it replicates the assignPDRA 
-
-    # it means that the user can revoke to the access rules in RPDRA of the operational model
-    # it replicates the revokePDRA 
+ 
 }
 
 
@@ -183,9 +167,12 @@ DeviceRole :={
 }
 
 InclusiveRoles :={
-{"AT":at1 , "RPDR":{"RP": {"kid": ["Entertainment_Time"]}, "DR": ["Kids_Friendly_Content"]}},
-{"AT":at3 , "RPDR":{"RP": {"babySitter":["Any_Time"]}, "DR": ["Adult_Controlled"]}},
+{"AT":at3 , "PDRA": {"P": [P1], "DR": ["Entertainment_Devices"] }},
+
+
 }
+
+
 
 ARATA := {
 {"AT":at1 , "AR" : ["Entertainment_Manager"]},
