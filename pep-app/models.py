@@ -6,15 +6,6 @@ from flask_login import LoginManager
 login = LoginManager()
 db = SQLAlchemy()
 
-# app.secret_key = 'xyz'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-  
-# db.init_app(app)
-# @app.before_first_request
-# def create_table():
-#     db.create_all()
-
 class UserModel(UserMixin, db.Model):
     __tablename__ = 'users'
  

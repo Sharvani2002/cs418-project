@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "09488144-d0dc-449d-bbf6-95e5e81d2e48",
+		"name": "EGRBAC_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADMIN_EXTENDED_MODEL",
+			"item": [
+				{
+					"name": "revokePDR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"data.example.allow == true\",\n  \"input\": {\n  \"user\" : \"Julia\",\n    \"AR\" : \"Home_Owner\",\n    \"P\":  [\n                {\n                    \"D\": [\n                        \"TV\",\n                        \"DVD\",\n                        \"PlayStation\"\n                    ],\n                    \"OP\": [\n                        \"On\",\n                        \"Off\",\n                        \"PG\",\n                        \"R\"\n                    ]\n                }\n            ],\n    \"DR\" : [\"Entertainment_Devices\"]\n}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8181/v1/data/egrbac_admin_extended/revokePDR"
+					},
+					"response": []
+				},
+				{
+					"name": "assignPDR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"data.example.allow == true\",\n  \"input\": {\n  \"user\" : \"Julia\",\n    \"AR\" : \"Home_Owner\",\n    \"P\":  [\n                {\n                    \"D\": [\n                        \"TV\",\n                        \"DVD\",\n                        \"PlayStation\"\n                    ],\n                    \"OP\": [\n                        \"On\",\n                        \"Off\",\n                        \"PG\",\n                        \"R\"\n                    ]\n                }\n            ],\n    \"DR\" : [\"Entertainment_Devices\"]\n}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8181/v1/data/egrbac_admin_extended/assignPDR"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADMIN_MODEL",
+			"item": [
+				{
+					"name": "revoke_RPDR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"data.example.allow == true\",\n  \"input\": {\n    \"user\" : \"Bob\",\n    \"AR\" : \"Entertainment_Manager\",\n    \"RP\": {\n                \"kid\": [\n                    \"Entertainment_Time\"\n                ]\n            },\n    \"DR\" : [\"Kids_Friendly_Content\"]\n}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8181/v1/data/egrbac_admin/revoke_RPDR"
+					},
+					"response": []
+				},
+				{
+					"name": "assign_RPDR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8181/v1/data/egrbac_admin/revoke_RPDR"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OPERATIONAL",
+			"item": [
+				{
+					"name": "op_allow_true",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"data.example.allow == true\",\n  \"input\": {\n    \"user\": \"Alex\",\n    \"action\": \"On\",\n    \"object\": \"TV\",\n    \"context\":\"weekends\"\n}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8181/v1/data/egrbac/op_allow"
+					},
+					"response": []
+				},
+				{
+					"name": "op_allow_false",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"data.example.allow == true\",\n  \"input\": {\n    \"user\": \"Susan\",\n    \"action\": \"StartRecording\",\n    \"object\": \"SurveillanceCamera\",\n    \"context\":\"TRUE\"\n}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8181/v1/data/egrbac/op_allow"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
