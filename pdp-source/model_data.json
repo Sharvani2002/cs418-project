@@ -1,501 +1,71 @@
 {
-    "U": [
-        "Alex",
-        "Bob",
-        "Susan",
-        "James",
-        "Julia"
-    ],
-    "R": [
-        "kid",
-        "parent",
-        "babySitter",
-        "guest"
-    ],
-    "UA": {
-        "Alex": [
-            "kid"
-        ],
-        "Bob": [
-            "parent"
-        ],
-        "Susan": [
-            "babySitter"
-        ],
-        "James": [
-            "guest"
-        ],
-        "Julia": [
-            "parent"
-        ]
+    "U" : ["Alex", "Bob", "Susan", "James", "Julia"],
+    "R" : ["kid", "parent", "babySitter", "guest"],
+    "UA" : {
+        "Alex": ["kid"], 
+        "Bob": ["parent"], 
+        "Susan": ["babySitter"], 
+        "James": ["guest"], 
+        "Julia": ["parent"]
     },
-    "D": [
-        "TV",
-        "DVD",
-        "PlayStation",
-        "DoorLock",
-        "Oven",
-        "SurveillanceCamera",
-        "BurglarAlarm",
-        "GarageDoor",
-        "Thermostat"
-    ],
-    "OP": [
-        "On",
-        "Off",
-        "PG",
-        "R",
-        "Lock",
-        "Unlock",
-        "Activate",
-        "Deactivate",
-        "On_Oven",
-        "Off_Oven",
-        "StartRecording",
-        "StopRecording",
-        "OpenGarageDoor",
-        "CloseGarageDoor",
-        "On_Thermostat",
-        "Off_Thermostat",
-        "Schedule_Thermostat"
-    ],
-    "P": {
-        "P1": {
-            "D": [
-                "TV",
-                "DVD",
-                "PlayStation"
-            ],
-            "OP": [
-                "On",
-                "Off",
-                "PG",
-                "R"
-            ]
-        },
-        "P2": {
-            "D": [
-                "TV",
-                "DVD",
-                "PlayStation"
-            ],
-            "OP": [
-                "On",
-                "Off",
-                "PG"
-            ]
-        },
-        "P3": {
-            "D": [
-                "Oven"
-            ],
-            "OP": [
-                "On_Oven",
-                "Off_Oven"
-            ]
-        },
-        "P4": {
-            "D": [
-                "FrontDoor"
-            ],
-            "OP": [
-                "Lock",
-                "Unlock"
-            ]
-        },
-        "P5": {
-            "D": [
-                "SurveillanceCamera"
-            ],
-            "OP": [
-                "StartRecording",
-                "StopRecording"
-            ]
-        },
-        "P6": {
-            "D": [
-                "BurglarAlarm"
-            ],
-            "OP": [
-                "Activate",
-                "Deactivate"
-            ]
-        },
-        "P7": {
-            "D": [
-                "GarageDoor"
-            ],
-            "OP": [
-                "OpenGarageDoor",
-                "CloseGarageDoor"
-            ]
-        },
-        "P8": {
-            "D": [
-                "Thermostat"
-            ],
-            "OP": [
-                "On_Thermostat",
-                "Off_Thermostat",
-                "Schedule_Thermostat"
-            ]
-        },
-        "P9": {
-            "D": [
-                "Thermostat"
-            ],
-            "OP": [
-                "On_Thermostat",
-                "Off_Thermostat"
-            ]
-        },
-        "P10": {
-            "D": [
-                "OutDoorCamera"
-            ],
-            "OP": [
-                "OnOutDoorCamera",
-                "OffOutDoorCamera"
-            ]
-        }
+    "D" : ["TV", "DVD", "PlayStation", "DoorLock", "Oven", "SurveillanceCamera", "BurglarAlarm", "GarageDoor", "Thermostat"],
+    "OP" : ["On", "Off", "PG", "R", "Lock", "Unlock", "Activate", "Deactivate", "On_Oven", "Off_Oven", "StartRecording", "StopRecording", "OpenGarageDoor", 
+    "CloseGarageDoor", "On_Thermostat", "Off_Thermostat", "Schedule_Thermostat"],
+    
+    "P" : {
+    "P1" : {"D":["TV" , "DVD", "PlayStation"], "OP": ["On", "Off", "PG", "R" ]},
+    "P2" : {"D":["TV", "DVD", "PlayStation"], "OP": ["On", "Off", "PG"] },
+    "P3" : {"D":["Oven"], "OP": ["On_Oven", "Off_Oven"] },
+    "P4" : {"D":["FrontDoor"], "OP": ["Lock", "Unlock"] },
+    "P5" : {"D":["SurveillanceCamera"], "OP": ["StartRecording", "StopRecording" ]},
+    "P6" : {"D":["BurglarAlarm"], "OP": ["Activate", "Deactivate" ]},
+    "P7" : {"D":["GarageDoor"], "OP": ["OpenGarageDoor" , "CloseGarageDoor" ]},
+    "P8" : {"D":["Thermostat"], "OP": ["On_Thermostat", "Off_Thermostat", "Schedule_Thermostat"]},
+    "P9" : {"D":["Thermostat"], "OP": ["On_Thermostat", "Off_Thermostat"]},
+    "P10" : {"D":["OutDoorCamera"], "OP": ["OnOutDoorCamera", "OffOutDoorCamera"]}
     },
-    "P": [
-        "P1",
-        "P2",
-        "P3",
-        "P4",
-        "P5",
-        "P6",
-        "P7",
-        "P8",
-        "P9",
-        "P10"
+    
+    "DR" : ["Entertainment_Devices", "Adult_Controlled", "Owner_Controlled", "Kids_Friendly_Content"],
+    
+    "PDRA" : [
+        {"P": ["P1"], "DR": ["Entertainment_Devices"] },
+        {"P": ["P2"], "DR": ["Kids_Friendly_Content"] },
+        {"P": ["P3", "P4", "P9"], "DR": ["Adult_Controlled"]},
+        {"P": ["P5", "P6", "P7", "P8"], "DR": ["Owner_Controlled"]}
     ],
-    "DR": [
-        "Entertainment_Devices",
-        "Adult_Controlled",
-        "Owner_Controlled",
-        "Kids_Friendly_Content"
+    
+    "EC" : ["weekends", "evenings", "vacation", "TRUE"],
+    "ER" : ["Entertainment_Time", "Any_Time", "Not_At_Home"],
+    "EA" : [
+        {"EC": ["weekends", "evenings"], "ER": ["Entertainment_Time"]},
+        {"EC": ["vacation"], "ER": ["Not_At_Home"]},
+        {"EC": ["TRUE"], "ER": ["Any_Time"]}
     ],
-    "PDRA": [
-        {
-            "P": [
-                "P1"
-            ],
-            "DR": [
-                "Entertainment_Devices"
-            ]
-        },
-        {
-            "P": [
-                "P2"
-            ],
-            "DR": [
-                "Kids_Friendly_Content"
-            ]
-        },
-        {
-            "P": [
-                "P3",
-                "P4",
-                "P9"
-            ],
-            "DR": [
-                "Adult_Controlled"
-            ]
-        },
-        {
-            "P": [
-                "P5",
-                "P6",
-                "P7",
-                "P8"
-            ],
-            "DR": [
-                "Owner_Controlled"
-            ]
-        }
+    
+    "RP" : [
+        {"kid": ["Entertainment_Time"]},
+        {"parent": ["Any_Time"]},
+        {"babySitter": ["Any_Time"]},
+        {"guest": ["Any_Time"]}, 
+        {"parent": ["Not_At_Home"]}
     ],
-    "EC": [
-        "weekends",
-        "evenings",
-        "vacation",
-        "TRUE"
+    
+    "RPDRA" : [
+        {"RP": {"parent": ["Any_Time"]}, "DR": ["Adult_Controlled"]},
+        {"RP": {"parent": ["Any_Time"]}, "DR": ["Owner_Controlled"]},
+        {"RP": {"parent": ["Any_Time"]}, "DR": ["Entertainment_Devices"]},
+        {"RP": {"kid":["Entertainment_Time"]}, "DR": ["Kids_Friendly_Content"]},
+        {"RP": {"babySitter":["Any_Time"]}, "DR": ["Adult_Controlled"]},
+        {"RP": {"guest":["Any_Time"]}, "DR": ["Entertainment_Devices"]}
     ],
-    "ER": [
-        "Entertainment_Time",
-        "Any_Time",
-        "Not_At_Home"
-    ],
-    "EA": [
-        {
-            "EC": [
-                "weekends",
-                "evenings"
-            ],
-            "ER": [
-                "Entertainment_Time"
-            ]
-        },
-        {
-            "EC": [
-                "vacation"
-            ],
-            "ER": [
-                "Not_At_Home"
-            ]
-        },
-        {
-            "EC": [
-                "TRUE"
-            ],
-            "ER": [
-                "Any_Time"
-            ]
-        }
-    ],
-    "RP": [
-        {
-            "kid": [
-                "Entertainment_Time"
-            ]
-        },
-        {
-            "parent": [
-                "Any_Time"
-            ]
-        },
-        {
-            "babySitter": [
-                "Any_Time"
-            ]
-        },
-        {
-            "guest": [
-                "Any_Time"
-            ]
-        },
-        {
-            "parent": [
-                "Not_At_Home"
-            ]
-        }
-    ],
-    "RPDRA": [
-        {
-            "RP": {
-                "parent": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Adult_Controlled"
-            ]
-        },
-        {
-            "RP": {
-                "parent": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Owner_Controlled"
-            ]
-        },
-        {
-            "RP": {
-                "parent": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Entertainment_Devices"
-            ]
-        },
-        {
-            "RP": {
-                "kid": [
-                    "Entertainment_Time"
-                ]
-            },
-            "DR": [
-                "Kids_Friendly_Content"
-            ]
-        },
-        {
-            "RP": {
-                "babySitter": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Adult_Controlled"
-            ]
-        },
-        {
-            "RP": {
-                "guest": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Entertainment_Devices"
-            ]
-        }
-    ],
-    "AUser": [
-        "Bob",
-        "Julia"
-    ],
-    "AR": [
-        "Entertainment_Manager",
-        "Home_Owner",
-        "Adult_Manager"
-    ],
-    "AUA": {
-        "Bob": [
-            "Home_Owner",
-            "Entertainment_Manager"
-        ],
-        "Julia": [
-            "Home_Owner",
-            "Adult_Manager"
-        ]
+    "AUser" :["Bob", "Julia"],
+    "AR" : ["Entertainment_Manager", "Home_Owner", "Adult_Manager"],
+    "AUA" : {
+        "Bob": ["Home_Owner", "Entertainment_Manager"], 
+        "Julia": ["Home_Owner", "Adult_Manager"]
     },
-    "AU": [
-        "Entertainment_Management",
-        "Ownership_Control",
-        "Adult_Management"
-    ],
-    "ProhibitedAssignment": [
-        {
-            "RP": {
-                "kid": [
-                    "Entertainment_Time"
-                ]
-            },
-            "DR": [
-                "Entertainment_Devices"
-            ]
-        }
-    ],
-    "at1": [
-        {
-            "RP": {
-                "kid": [
-                    "Entertainment_Time"
-                ],
-                "babySitter": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Entertainment_Devices",
-                "Kids_Friendly_Content"
-            ]
-        }
-    ],
-    "at2": [
-        {
-            "RP": {
-                "parent": [
-                    "Any_Time"
-                ],
-                "babySitter": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Adult_Controlled"
-            ]
-        }
-    ],
-    "at3": [
-        {
-            "RP": {
-                "parent": [
-                    "Any_Time"
-                ]
-            },
-            "DR": [
-                "Owner_Controlled"
-            ]
-        }
-    ],
-    "RolePair": [
-        {
-            "at": [
-                "at1"
-            ],
-            "RP": {
-                "parent": [
-                    "Any_Time"
-                ],
-                "guest": [
-                    "Any_Time"
-                ],
-                "kid": [
-                    "Entertainment_Time"
-                ]
-            }
-        }
-    ],
-    "DeviceRole": [
-        {
-            "at": [
-                "at2"
-            ],
-            "DR": [
-                "Adult_Controlled"
-            ]
-        }
-    ],
-    "InclusiveRoles": [
-        {
-            "AT": "at1",
-            "RPDR": {
-                "RP": {
-                    "kid": [
-                        "Entertainment_Time"
-                    ]
-                },
-                "DR": [
-                    "Kids_Friendly_Content"
-                ]
-            }
-        },
-        {
-            "AT": "at3",
-            "RPDR": {
-                "RP": {
-                    "babySitter": [
-                        "Any_Time"
-                    ]
-                },
-                "DR": [
-                    "Adult_Controlled"
-                ]
-            }
-        }
-    ],
-    "ARATA": [
-        {
-            "AT": "at1",
-            "AR": [
-                "Entertainment_Manager"
-            ]
-        },
-        {
-            "AT": "at2",
-            "AR": [
-                "Adult_Manager"
-            ]
-        },
-        {
-            "AT": "at3",
-            "AR": [
-                "Home_Owner"
-            ]
-        }
+    "ProhibitedAssignment" : [
+        {"RP": {"kid": ["Entertainment_Time"]}, "DR": ["Entertainment_Devices"]}
     ]
-}
+    
+    }
