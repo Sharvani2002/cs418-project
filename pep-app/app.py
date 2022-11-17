@@ -33,10 +33,13 @@ from flask import Flask, request
 
 app.logger.setLevel(logging.DEBUG)
 
+# from . import models
+
 # app.opa = OPA(app, input_function=parse_input)
 
 from . import views  # For import side-effects of setting up routes.
 
 
 if __name__ == '__main__':
+    views.create_all()
     app.run(debug=True)

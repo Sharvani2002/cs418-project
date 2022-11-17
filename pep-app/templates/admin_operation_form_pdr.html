@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}
+Admin Operation
+{% endblock %}
+{% block content %}
+<h1>Admin Form for PDR</h1>
+
+<form action="{{ url_for("admin_operation_pdr")}}" method="POST">
+    <label for="admin_method">Choose a method:</label>
+    <select id="admin_method" name="admin_method">
+      <option value="assign">Assign</option>
+      <option value="revoke">Revoke</option>
+    </select> 
+
+    <!-- <label for="username">User name:</label>
+    <input type="text" id="username" name="user" placeholder="Julia"> -->
+    <label for="action">Administrative Role:</label>
+    <input type="text" id="AR" name="AR" placeholder="Home_Owner">
+    <label for="device">Permission:</label>
+    <input type="text" id="P" name="P" placeholder="P1">
+    <label for="DR">Entertainment Devices:</label>
+    <input type="text" id="DR" name="DR" placeholder="Entertainment_Devices">
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
