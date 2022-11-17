@@ -1,5 +1,5 @@
 # cs418-project
-## Role-Based Administration of Role-Based Smart Home IoT [Paper link]
+## Role-Based Administration of Role-Based Smart Home IoT [<a href="https://www.profsandhu.com/confrnc/misconf/satcps21-mehrnoosh.pdf">Paper link</a>]
 Team Id: <b>T14</b> <br>
 Team members: 
 - 191EE247 Sharvani Somayaji
