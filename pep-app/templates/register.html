@@ -1,0 +1,44 @@
+<!-- 
+<h1>Register Form</h1>
+
+<form method = "POST">
+    <p>email <input type = "email" name = "email" /></p>
+    <p>Username <input type = "text" name = "username" /></p>
+    <p>password <input type = "password" name = "password" /></p>
+    <p> submit <input type = "submit" value = "Submit" /></p>
+</form>
+ 
+<h3>Already Have an Account?</h3><br>
+<h3><a href ="{{url_for('login')}}">Login Here</a></h3>
+-->
+
+{% extends "layout.html" %}
+{% block title %}
+Register
+{% endblock %}
+{% block content %}
+
+{% from "includes/formhelpers.html" import render_field %}
+
+<h4>
+    <strong>
+        Register
+    </strong>
+</h4>
+<hr>
+
+<form method="POST">
+
+    {{ render_field(form.name, class="form-control") }}
+    {{ render_field(form.username, class="form-control") }}
+    {{ render_field(form.email, class="form-control") }}
+    {{ render_field(form.password, class="form-control") }}
+    {{ render_field(form.confirm, class="form-control") }}
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<hr>
+
+<a href="/login">Login into existing account!</a>
+{% endblock %} 

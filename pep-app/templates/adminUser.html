@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}
+Admin
+{% endblock %}
+{% block content %}
+
+<div class="topnav">
+  {% if session.logged_in %}
+  <a href="/logout/">Logout</a>
+{% else %}
+  <a href="/login/">Login</a>
+  <a href="/register/">Sign up</a>
+{% endif %}
+</div>
+<hr>
+<h1>Admin User</h1>
+{% if session['logged_in'] %}
+    <h5>Welcome, {{session['username'] }}</h5>
+{% endif %}
+
+What action do you want to do?
+<form action="{{ url_for('adminUser')}}" method="POST">
+
+
+    <label for="admin_method_assign">What do you want to assign/revoke?</label>
+    <select id="admin_method_assign" name="admin_method_assign">
+      <option value="PDR">PDR</option>
+      <option value="RPDR">RPDR</option>
+    </select> 
+
+    <button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}
